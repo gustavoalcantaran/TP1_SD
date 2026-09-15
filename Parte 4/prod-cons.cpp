@@ -89,9 +89,6 @@ void thread_consumidora(int id) {
         
         // A verificação e impressão ocorrem FORA da zona crítica para não travar as outras threads
         bool primo = is_prime(numero);
-        // Descomente a linha abaixo para ver a saída no terminal, 
-        // mas mantenha comentada ao medir o tempo, pois o I/O do terminal é muito lento.
-        // cout << "[Consumidor " << id << "] Número " << numero << (primo ? " é primo" : " não é primo") << "\n";
     }
 }
 
