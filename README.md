@@ -9,16 +9,15 @@ TP1/
 ├── Parte 1 e 2/
 │   ├── emissor.cpp
 │   └── receptor.cpp
-├── Parte 4/
-│   ├── prod-cons.cpp
-│   ├── automacao.py
-│   ├── gerar_graficos_relatorio.py
-│   ├── *.csv
-│   └── *.png
-└── SD_TP1_2_2026.pdf
+└── Parte 4/
+    ├── prod-cons.cpp
+    ├── automacao.py
+    ├── gerar_graficos_relatorio.py
+    ├── *.csv
+    └── *.png
 ```
 
-As fontes usam APIs POSIX, portanto a execução deve ser feita em Linux, WSL ou outro ambiente compatível. O PDF contém o enunciado da atividade.
+As fontes usam APIs POSIX, portanto a execução deve ser feita em Linux, WSL ou outro ambiente compatível.
 
 ## Parte 1 e 2 - Comunicação por sinais
 
