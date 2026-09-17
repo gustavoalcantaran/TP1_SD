@@ -16,6 +16,7 @@ int N, Np, Nc;
 const int M = 100000;
 int itens_processados = 0;
 int ocupacao_atual = 0;
+bool silencioso = false;
 
 vector<int> buffer;
 int pos_in = 0, pos_out = 0;
@@ -25,6 +26,8 @@ vector<int> historico_ocupacao;
 sem_t espacos_livres;
 sem_t itens_disponiveis;
 mutex mtx_buffer;
+mutex mtx_saida;
+
 
 // Função de verificação de primalidade
 bool is_prime(int n) {
@@ -89,18 +92,27 @@ void thread_consumidora(int id) {
         
         // A verificação e impressão ocorrem FORA da zona crítica para não travar as outras threads
         bool primo = is_prime(numero);
+
+        if (!silencioso) {
+            lock_guard<mutex> lock(mtx_saida);
+            cout << numero << " é " << (primo ? "primo" : "não primo") << "\n";
+        }
     }
 }
 
 int main(int argc, char* argv[]) {
-    if (argc != 4) {
-        cerr << "Uso: " << argv[0] << " <Np> <Nc> <N (Tamanho do Buffer)>\n";
+    if (argc < 4 || argc > 5) {
+        cerr << "Uso: " << argv[0] << " <Np> <Nc> <N (Tamanho do Buffer)> [silencioso]\n";
         return 1;
     }
 
     Np = stoi(argv[1]);
     Nc = stoi(argv[2]);
     N = stoi(argv[3]);
+
+    if (argc == 5) {
+        silencioso = (stoi(argv[4]) == 1); 
+    }
 
     buffer.resize(N);
     historico_ocupacao.reserve(M * 2); // Pré-aloca espaço para evitar realocações na memória

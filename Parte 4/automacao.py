@@ -21,7 +21,7 @@ for N in valores_N:
         
         for i in range(repeticoes):
             # Executa o programa C++ em background
-            resultado = subprocess.run(["./prod-cons", str(Np), str(Nc), str(N)], capture_output=True, text=True)
+            resultado = subprocess.run(["./prod-cons", str(Np), str(Nc), str(N), "1"], capture_output=True, text=True)
             
             # Puxa o tempo (ms) da frase que o C++ imprimiu usando Regex
             match = re.search(r": ([\d.]+) ms", resultado.stdout)
@@ -30,8 +30,13 @@ for N in valores_N:
             else:
                 print(f"Erro ao ler a saída na repetição {i}")
 
-        # Calcula a média das 10 repetições
-        media = sum(tempos) / repeticoes
+        qtd_sucessos = len(tempos)
+        if qtd_sucessos > 0:
+            media = sum(tempos) / qtd_sucessos
+        else:
+            media = 0
+            print(f"Aviso: Nenhuma execução funcionou para o cenário Np={Np}, Nc={Nc}.")
+            
         tempos_medios[N].append(media)
 
 print("\nTestes finalizados! Gerando o gráfico de Tempo Médio...")
