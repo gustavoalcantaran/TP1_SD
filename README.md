@@ -9,6 +9,8 @@ TP1/
 ├── Parte 1 e 2/
 │   ├── emissor.cpp
 │   └── receptor.cpp
+├── Parte 3/
+│   └── pipe.c
 └── Parte 4/
     ├── prod-cons.cpp
     ├── automacao.py
@@ -63,6 +65,29 @@ Os valores numéricos dos sinais podem variar entre sistemas. Em Linux, `SIGUSR1
 
 - **Blocking Wait:** o receptor usa `pause()` e fica suspenso até a chegada de um sinal. Esse modo evita consumo desnecessário de CPU enquanto não há eventos.
 - **Busy Wait:** o receptor permanece em um loop ativo. A resposta aos sinais continua funcionando, mas o processo consome ciclos de CPU continuamente.
+
+## Parte 3 - Comunicação por pipes
+
+O programa `pipe.c` implementa um programa Produtor-Consumidor com dois processos que utilizam pipes para fazer a comunicação.
+
+- `i`: quantidade de números a serem gerados pelo produtor.
+
+O programa produtor gera i números inteiros aleatórios e crescentes, depois que chegar ao final a quantidade de números envia o número zero e o produtor termina sua execução. Enquanto, o programa consumidor recebe o número e verifica se o mesmo é primo e quando receber o número zero termina sua execução.
+
+###  Compilação e execução
+
+Na pasta `Parte 3`:
+
+```bash
+gcc pipe.c -o pipe
+./pipe <i>
+```
+
+Exemplo:
+
+```bash
+./pipe 100
+```
 
 ## Parte 4 - Problema produtor-consumidor
 
