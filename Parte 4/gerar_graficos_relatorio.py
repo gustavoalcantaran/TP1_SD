@@ -10,7 +10,7 @@ print("Gerando gráficos de ocupação aglomerados para o relatório...")
 for N in valores_N:
     # Cria uma figura grande com 7 minigráficos (1 linha, 7 colunas)
     fig, axes = plt.subplots(nrows=1, ncols=7, figsize=(20, 4), sharey=True)
-    fig.suptitle(f"Ocupação do Buffer ao Longo do Tempo (Buffer N={N}) - Primeiras 1000 operações", fontsize=14)
+    fig.suptitle(f"Ocupação do Buffer ao Longo do Tempo (Buffer N={N}) - Primeiras 5000 operações", fontsize=14)
     
     for idx, (Np, Nc) in enumerate(combinacoes):
         arquivo_csv = f"ocupacao_Np{Np}_Nc{Nc}_N{N}.csv"
